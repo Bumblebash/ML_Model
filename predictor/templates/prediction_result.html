@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+    }
+    .btn {
+      background-color: red;
+      color: #fff;
+      border: none;
+    }
+    .btn:hover {
+      background-color: #c0392b;
+    }
+    /* New style for bold output */
+    .table td.bold {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5 mb-4 text-center">Prediction Result</h1>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">Age(years)</th>
+          <td class="bold">{{ user_data.age }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Gender</th>
+          <td class="bold">{{ user_data.gender }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Height(cm)</th>
+          <td class="bold">{{ user_data.height }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Weight(kg)</th>
+          <td class="bold">{{ user_data.weight }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Blood Pressure (Sys/Dia)(mmHg)</th>
+          <td class="bold">{{ user_data.ap_hi }} / {{ user_data.ap_lo }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Cholesterol</th>
+          <td class="bold">
+            {% if user_data.cholesterol == 1 %}
+              Normal
+            {% elif user_data.cholesterol == 2 %}
+              Above Normal
+            {% else %}
+              High
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Glucose</th>
+          <td class="bold">
+            {% if user_data.gluc == 1 %}
+              Normal
+            {% elif user_data.gluc == 2 %}
+              Above Normal
+            {% else %}
+              High
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Smoke</th>
+          <td class="bold">
+            {% if user_data.smoke == 0 %}
+              No
+            {% else %}
+              Yes
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Alcohol</th>
+          <td class="bold">
+            {% if user_data.alco == 0 %}
+              No
+            {% else %}
+              Yes
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Activity</th>
+          <td class="bold">
+            {% if user_data.active == 0 %}
+              Inactive
+            {% else %}
+              Active
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Prediction Result</th>
+          <td class="bold">{{ result }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-lg btn-block" href="{% url 'home' %}">Go back to home</a>
+  </div>
+</body>
+</html>

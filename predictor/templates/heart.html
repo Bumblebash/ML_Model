@@ -1,0 +1,36 @@
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
+
+{% block content %} <!-- Define the content block to override -->
+
+<style>
+	.ok{
+		color: green;
+		font-size: 50px;
+	}
+</style>
+
+<div class="container">
+	<div class="display-4 my-2 text-center"><strong class="ok"> Doctor's Hospital </strong> <br> Heart Disease Predictor</div>
+	<hr />
+
+	{% if context %} <!-- Check if 'context' variable exists -->
+	<div class="h1 my-2 text-center">
+		You {{ context }} a heart disease.
+	</div>
+	{% endif %}
+
+	<div class="col-md-4">
+		<form class="" method="POST" action="{% url 'heart' %}"> <!-- Form to submit user data to 'heart' view -->
+			{% csrf_token %} <!-- Add CSRF token for form submission security -->
+			{{ form }} <!-- Render the HeartDiseaseForm object fields -->
+
+			<div class="mt-4">
+				<button type="submit" class="btn-lg btn-block btn btn-outline-danger mb-5">
+					Submit
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %} <!-- End of content block -->
